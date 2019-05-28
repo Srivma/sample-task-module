@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <audio controls autoplay></audio>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script type="text/javascript" src="/recorder.js"></script>
+
+    <fieldset>
+      <legend>RECORD AUDIO</legend>
+      <input onclick="startRecording()" type="button" value="start recording" />
+      <input
+        onclick="stopRecording()"
+        type="button"
+        value="stop recording and play"
+      />
+    </fieldset>
+    <script>
+      var onFail = function(e) {
+        alert("Failure");
+        console.log("Rejected!", e);
+      };
+
+      var onSuccess = function(s) {
+        alert("success");
+        var context = new (window.AudioContext || window.webkitAudioContext)();
+        var mediaStreamSource = context.createMediaStreamSource(s);
+        recorder = new Recorder(mediaStreamSource);
+        recorder.record();
+
+        // audio loopback
+        // mediaStreamSource.connect(context.destination);
+      };
+
+      window.URL = window.URL || window.webkitURL;
+      navigator.getUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;
+      // Different query options:
+      navigator.permissions.query({ name: "camera" });
+      navigator.permissions.query({ name: "microphone" });
+
+      let constraints = (window.constraints = {
+        audio: true,
+        video: {
+          facingMode: "user"
+        }
+      });
+      // Example:
+      navigator.permissions
+        .query({ name: "microphone" })
+        .then(function(result) {
+          if (result.state == "granted") {
+            // Access granted
+            alert(result.state);
+          } else if (result.state == "prompt") {
+            alert(result.state);
+            // Access has not been granted
+          }
+        });
+      var recorder;
+      var audio = document.querySelector("audio");
+
+      function startRecording() {
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then(onSuccess)
+          .catch(onFail);
+
+        //var promise = navigator.mediaDevices.getUserMedia(constraints);
+        // alert(navigator.mediaDevices.getUserMedia({ audio: true }, onSuccess, onFail));
+      }
+
+      function stopRecording() {
+        recorder.stop();
+        recorder.exportWAV(function(s) {
+          audio.src = window.URL.createObjectURL(s);
+        });
+      }
+    </script>
+  </body>
+</html>

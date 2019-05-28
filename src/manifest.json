@@ -1,0 +1,47 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.4/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.4",
+    "version": "1.0.0",
+    "id": "f195eed2-4336-4c33-a11b-a417dcaa8680",
+    "packageName": "taskmodule",
+    "developer": {
+        "name": "Srivani",
+        "websiteUrl": "https://02be80eb.ngrok.io",
+        "privacyUrl": "https://www.microsoft.com/privacy",
+        "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Sample Task Module",
+        "full": "Sample Task Module"
+    },
+    "description": {
+        "short": "task module with tabs",
+        "full": "task module with tabs"
+    },
+    "accentColor": "#FFFFFF",
+    "staticTabs": [
+        {
+            "entityId": "taskmodule",
+            "name": "SampleTaskModule",
+            "contentUrl": "https://02be80eb.ngrok.io/taskmodule",
+            "websiteUrl": "https://02be80eb.ngrok.io/taskmodule",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "devicePermissions": [
+        "media"
+    ],
+    "validDomains": [
+        "02be80eb.ngrok.io"
+    ]
+}
