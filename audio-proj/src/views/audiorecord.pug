@@ -1,0 +1,12 @@
+extends embed.pug
+block iframe
+  iframe(id="extension-tab-frame"
+            name="extension-tab-frame"
+            src="./test.html"
+            frameborder="0"
+            allow="geolocation *; microphone *; camera *; midi *;"
+            sandbox="allow-forms allow-modals allow-popups allow-pointer-lock allow-scripts allow-same-origin"
+            allowfullscreen)
+  div(id="recordAppError" class="surface" style="display: none; padding: 20px;")
+    script.
+    

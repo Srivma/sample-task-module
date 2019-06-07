@@ -1,0 +1,25 @@
+
+extends layout.pug
+
+block content
+  div(class='font-semibold font-title') Microsoft Teams Task Modules Audio Demo
+  
+  p Let's try it out!
+    div(id="buttons" style="text-align: center; margin-left: auto; margin-right: auto")
+        
+      button(class="taskModuleButton button-primary" id="AudioRecord") Audio Record
+      div <a id="dlaudioRecordApps" target="_blank")>Deep Link</a>
+      
+  script.
+    var deepLinks = document.getElementsByClassName("deepLinkWarning");
+    for (var i = 0; i < deepLinks.length; i++) {
+      deepLinks[i].onmousedown = deepLinkAlert;
+    };
+    // If the left button is clicked, show an error message
+    function deepLinkAlert(event) {
+      if (event.which === 1) {
+        event.stopPropagation();
+        // event.preventDefault();
+        alert("The deep link URL is too long to be used from the browser address bar, but on most browsers, it will work from within an anchor tag (<a>) or a button.");
+      }
+    }

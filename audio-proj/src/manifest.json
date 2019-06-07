@@ -1,0 +1,69 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.5",
+    "version": "1.0.0",
+    "id": "96f6fe44-166e-4951-b3a3-bb65ada49020",
+    "packageName": "taskmodule",
+    "developer": {
+        "name": "Srivani",
+        "websiteUrl": "https://sampleaudiorecordtask.azurewebsites.net",
+        "privacyUrl": "https://www.microsoft.com/privacy",
+        "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Sample Audio Task Module",
+        "full": "Sample Audio Task Module"
+    },
+    "description": {
+        "short": "task module with tabs",
+        "full": "task module with tabs"
+    },
+    "accentColor": "#FFFFFF",
+    "staticTabs": [
+        {
+            "entityId": "taskmodule",
+            "name": "SampleAudioTaskModule",
+            "contentUrl": "https://sampleaudiorecordtask.azurewebsites.net/taskmodule",
+            "websiteUrl": "https://sampleaudiorecordtask.azurewebsites.net/taskmodule",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "96f6fe44-166e-4951-b3a3-bb65ada49020",
+            "canUpdateConfiguration": false,
+            "commands": [
+                {
+                    "id": "getAudioRecord",
+                    "type": "action",
+                    "title": "Get some audio for fun",
+                    "description": "",
+                    "initialRun": true,
+                    "context": ["commandBox", "compose"],
+                    "taskInfo": 
+                        {
+                            "url": "https://sampleaudiorecordtask.azurewebsites.net/audiorecord",
+                            "title": "Audio title"
+                            
+                        }
+                }
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "sampleaudiorecordtask.azurewebsites.net"
+    ],
+    "devicePermissions": [
+        "media"
+    ]
+}
