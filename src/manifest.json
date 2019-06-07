@@ -1,12 +1,12 @@
 {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.4/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.4",
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.5",
     "version": "1.0.0",
-    "id": "f195eed2-4336-4c33-a11b-a417dcaa8680",
+    "id": "96f6fe44-166e-4951-b3a3-bb65ada49020",
     "packageName": "taskmodule",
     "developer": {
         "name": "Srivani",
-        "websiteUrl": "https://02be80eb.ngrok.io",
+        "websiteUrl": "https://sampleaudiorecordtask.azurewebsites.net",
         "privacyUrl": "https://www.microsoft.com/privacy",
         "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
     },
@@ -15,8 +15,8 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "Sample Task Module",
-        "full": "Sample Task Module"
+        "short": "Sample Audio Task Module",
+        "full": "Sample Audio Task Module"
     },
     "description": {
         "short": "task module with tabs",
@@ -26,11 +26,33 @@
     "staticTabs": [
         {
             "entityId": "taskmodule",
-            "name": "SampleTaskModule",
-            "contentUrl": "https://02be80eb.ngrok.io/taskmodule",
-            "websiteUrl": "https://02be80eb.ngrok.io/taskmodule",
+            "name": "SampleAudioTaskModule",
+            "contentUrl": "https://sampleaudiorecordtask.azurewebsites.net/taskmodule",
+            "websiteUrl": "https://sampleaudiorecordtask.azurewebsites.net/taskmodule",
             "scopes": [
                 "personal"
+            ]
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "96f6fe44-166e-4951-b3a3-bb65ada49020",
+            "canUpdateConfiguration": false,
+            "commands": [
+                {
+                    "id": "getAudioRecord",
+                    "type": "action",
+                    "title": "Get some audio for fun",
+                    "description": "",
+                    "initialRun": true,
+                    "context": ["commandBox", "compose"],
+                    "taskInfo": 
+                        {
+                            "url": "https://sampleaudiorecordtask.azurewebsites.net/audiorecord",
+                            "title": "Audio title"
+                            
+                        }
+                }
             ]
         }
     ],
@@ -38,10 +60,10 @@
         "identity",
         "messageTeamMembers"
     ],
+    "validDomains": [
+        "sampleaudiorecordtask.azurewebsites.net"
+    ],
     "devicePermissions": [
         "media"
-    ],
-    "validDomains": [
-        "02be80eb.ngrok.io"
     ]
 }

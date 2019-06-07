@@ -81,26 +81,18 @@ document.addEventListener("DOMContentLoaded", function(): void {
             completionBotId: null,
         };
         let deepLink = document.getElementById("dlaudioRecordApps") as HTMLAnchorElement;
-        deepLink.href = taskModuleLink(appId, constants.TaskModuleStrings.AudioRecordTitle, constants.TaskModuleSizes.audiorecord.height, constants.TaskModuleSizes.audiorecord.width, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`, null, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`);
+        deepLink.href = taskModuleLink(constants.defaultJson.appId, constants.TaskModuleStrings.AudioRecordTitle, constants.TaskModuleSizes.audiorecord.height, constants.TaskModuleSizes.audiorecord.width, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`, null, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`);
 
         for (let btn of taskModuleButtons) {
             btn.addEventListener("click",
                 function (): void {
                     taskInfo.url = `${appRoot()}/${this.id.toLowerCase()}`;
                     let submitHandler = (err: string, result: any): void => { console.log(`Err: ${err}; Result:  + ${result}`); };
-                    switch (this.id.toLowerCase()) {
-                        case constants.TaskModuleIds.AudioRecord:
-                            taskInfo.title = constants.TaskModuleStrings.AudioRecordTitle;
-                            taskInfo.height = constants.TaskModuleSizes.audiorecord.height;
-                            taskInfo.width = constants.TaskModuleSizes.audiorecord.width;
-                            microsoftTeams.tasks.startTask(taskInfo, submitHandler);
-                            break;
-                        default:
-                            console.log("Unexpected button ID: " + this.id.toLowerCase());
-                            return;
-                    }
-                    console.log("URL: " + taskInfo.url);
-                });
-        }
+                    taskInfo.title = constants.TaskModuleStrings.AudioRecordTitle;
+                    taskInfo.height = constants.TaskModuleSizes.audiorecord.height;
+                    taskInfo.width = constants.TaskModuleSizes.audiorecord.width;
+                    microsoftTeams.tasks.startTask(taskInfo, submitHandler);
+                    });
+                }
     }
 });

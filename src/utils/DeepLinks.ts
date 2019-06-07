@@ -1,5 +1,4 @@
 // Helper function to generate task module deep links
-import * as constants from "../constants";
 export function taskModuleLink(
     appId: string,
     // tslint:disable:no-inferrable-types
@@ -16,7 +15,7 @@ export function taskModuleLink(
         else {
             let cardOrUrl = (card === null) ? `url=${url}` : `card=${JSON.stringify(card)}`;
             let fallBack = (fallbackUrl === undefined) ? "" : `&fallbackUrl=${fallbackUrl}`;
-            let completionBot = (completionBotId === undefined) ? "" : `&completionBotId=${constants.defaultJson.appId}`;
-            return(encodeURI(`https://teams.microsoft.com/l/task/${constants.defaultJson.appId}?${cardOrUrl}&height=${height}&width=${width}&title=${title}${fallBack}${completionBot}`));
+            let completionBot = (completionBotId === undefined) ? "" : `&completionBotId=${appId}`;
+            return(encodeURI(`https://teams.microsoft.com/l/task/${appId}?${cardOrUrl}&height=${height}&width=${width}&title=${title}${fallBack}${completionBot}`));
         }
 }

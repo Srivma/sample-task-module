@@ -1,14 +1,10 @@
 // Dialog ids
 // tslint:disable-next-line:variable-name
 export const defaultJson = {
-    baseUri: "https://02be80eb.ngrok.io",
-    appId: "f195eed2-4336-4c33-a11b-a417dcaa8680",
+    baseUri: "https://sampleaudiorecordtask.azurewebsites.net",
+    appId: "96f6fe44-166e-4951-b3a3-bb65ada49020",
+    appPassword: ".1N-=7*yfK5Q24oP3iKF*P0Sj6jhZYMh",
 };
-
-// URL Placeholders - not currently supported
-// tslint:disable-next-line:variable-name
-export const UrlPlaceholders = "loginHint={loginHint}&upn={userPrincipalName}&aadId={userObjectId}&theme={theme}&groupId={groupId}&tenantId={tid}&locale={locale}";
-
 // Task Module Strings
 // tslint:disable-next-line:variable-name
 export const TaskModuleStrings = {

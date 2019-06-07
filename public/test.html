@@ -2,8 +2,9 @@
 <html>
   <body>
     <audio controls autoplay></audio>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script type="text/javascript" src="/recorder.js"></script>
+    <script
+      src="https://unpkg.com/@microsoft/teams-js@1.3.7/dist/MicrosoftTeams.min.js"></script>
+      <script type="text/javascript" src="recorder.js"></script>
 
     <fieldset>
       <legend>RECORD AUDIO</legend>
@@ -15,63 +16,57 @@
       />
     </fieldset>
     <script>
+      microsoftTeams.initialize();
       var onFail = function(e) {
-        alert("Failure");
         console.log("Rejected!", e);
       };
 
       var onSuccess = function(s) {
-        alert("success");
-        var context = new (window.AudioContext || window.webkitAudioContext)();
+        var AudioContext = window.AudioContext || window.webkitAudioContext;
+        var context = new AudioContext();
         var mediaStreamSource = context.createMediaStreamSource(s);
         recorder = new Recorder(mediaStreamSource);
         recorder.record();
-
-        // audio loopback
-        // mediaStreamSource.connect(context.destination);
       };
 
-      window.URL = window.URL || window.webkitURL;
-      navigator.getUserMedia =
-        navigator.getUserMedia ||
+      window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+        navigator.getUserMedia =
+        navigator.mediaDevices.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
         navigator.msGetUserMedia;
       // Different query options:
-      navigator.permissions.query({ name: "camera" });
-      navigator.permissions.query({ name: "microphone" });
+      /* // Example:
+  navigator.permissions
+    .query({ name: "microphone" })
+    .then(function(result) {
+      if (result.state == "granted") {
+        // Access granted
+      //  doSomething();
+        alert(result.state);
+      } else if (result.state == "prompt") {
+        alert(result.state);
+        // Access has not been granted
+      }
+    });*/
 
-      let constraints = (window.constraints = {
-        audio: true,
-        video: {
-          facingMode: "user"
-        }
-      });
-      // Example:
-      navigator.permissions
-        .query({ name: "microphone" })
-        .then(function(result) {
-          if (result.state == "granted") {
-            // Access granted
-            alert(result.state);
-          } else if (result.state == "prompt") {
-            alert(result.state);
-            // Access has not been granted
-          }
-        });
       var recorder;
       var audio = document.querySelector("audio");
 
       function startRecording() {
+        // Request access to the media devices
         navigator.mediaDevices
-          .getUserMedia({ audio: true })
-          .then(onSuccess)
-          .catch(onFail);
-
-        //var promise = navigator.mediaDevices.getUserMedia(constraints);
-        // alert(navigator.mediaDevices.getUserMedia({ audio: true }, onSuccess, onFail));
+          .getUserMedia({
+            audio: true
+          })
+          .then(function(stream) {
+            // Initialize the recorder
+            this.onSuccess(stream);
+          })
+          .catch(function(error) {
+            console.error("Cannot access media devices: ", error);
+          });
       }
-
       function stopRecording() {
         recorder.stop();
         recorder.exportWAV(function(s) {
