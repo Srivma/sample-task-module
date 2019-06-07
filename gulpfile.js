@@ -54,7 +54,7 @@ var tsProject = ts.createProject('./tsconfig.json', {
 var filesToWatch = ['**/*.ts', '!node_modules/**'];
 var filesToLint = ['**/*.ts', '!src/typings/**', '!node_modules/**'];
 var staticFiles = ['src/**/*.json', 'src/**/*.pug', '!src/manifest.json'];
-var clientJS = 'build/src/TaskModuleTab.js';
+var clientJS = 'build/src/taskmodule.js';
 var bundledJS = 'bundle.js';
 var msTeamsLib = './node_modules/@microsoft/teams-js/dist/MicrosoftTeams.min.js';
 
