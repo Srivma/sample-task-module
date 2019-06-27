@@ -1,9 +1,9 @@
 // Dialog ids
 // tslint:disable-next-line:variable-name
 export const defaultJson = {
-    baseUri: "https://sampleaudiorecordtask.azurewebsites.net",
+    baseUri: "https://19febf26.ngrok.io",
     appId: "96f6fe44-166e-4951-b3a3-bb65ada49020",
-    appPassword: ".1N-=7*yfK5Q24oP3iKF*P0Sj6jhZYMh",
+    appPassword: "drvIXmVag/y1zY**548WydGguTaPrG:m",
 };
 // Task Module Strings
 // tslint:disable-next-line:variable-name

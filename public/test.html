@@ -5,7 +5,7 @@
     <script
       src="https://unpkg.com/@microsoft/teams-js@1.3.7/dist/MicrosoftTeams.min.js"></script>
       <script type="text/javascript" src="recorder.js"></script>
-
+      <script type="text/javascript" src="/scripts/bundle.js"></script>
     <fieldset>
       <legend>RECORD AUDIO</legend>
       <input onclick="startRecording()" type="button" value="start recording" />
@@ -35,20 +35,6 @@
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
         navigator.msGetUserMedia;
-      // Different query options:
-      /* // Example:
-  navigator.permissions
-    .query({ name: "microphone" })
-    .then(function(result) {
-      if (result.state == "granted") {
-        // Access granted
-      //  doSomething();
-        alert(result.state);
-      } else if (result.state == "prompt") {
-        alert(result.state);
-        // Access has not been granted
-      }
-    });*/
 
       var recorder;
       var audio = document.querySelector("audio");
@@ -71,6 +57,10 @@
         recorder.stop();
         recorder.exportWAV(function(s) {
           audio.src = window.URL.createObjectURL(s);
+          let audioInfo = {
+          name: audio.src,
+          }
+          microsoftTeams.tasks.submitTask(audioInfo);
         });
       }
     </script>
