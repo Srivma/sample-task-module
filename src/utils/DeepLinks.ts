@@ -7,14 +7,14 @@ export function taskModuleLink(
     width: string | number = "medium",
     url: string = null,
     card: any = null,
-    fallbackUrl?: string,
+    fallBackUrl?: string,
     completionBotId?: string): string {
         if ((url === null) && (card === null)) {
             return("Error generating deep link: you must specify either a card or URL.");
         }
         else {
             let cardOrUrl = (card === null) ? `url=${url}` : `card=${JSON.stringify(card)}`;
-            let fallBack = (fallbackUrl === undefined) ? "" : `&fallbackUrl=${fallbackUrl}`;
+            let fallBack = (fallBackUrl === undefined) ? "" : `&fallbackUrl=${fallBackUrl}`;
             let completionBot = (completionBotId === undefined) ? "" : `&completionBotId=${appId}`;
             return(encodeURI(`https://teams.microsoft.com/l/task/${appId}?${cardOrUrl}&height=${height}&width=${width}&title=${title}${fallBack}${completionBot}`));
         }

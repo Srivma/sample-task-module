@@ -4,7 +4,6 @@ import { appRoot } from "./dialogs/CardTemplates";
 import { taskModuleLink } from "./utils/DeepLinks";
 
 declare var appId: any; // Injected at template render time
-
 // Set the desired theme
 function setTheme(theme: string): void {
     if (theme) {
@@ -12,15 +11,6 @@ function setTheme(theme: string): void {
         document.body.className = "theme-" + (theme === "default" ? "light" : theme);
     }
 }
-
-// Create the URL that Microsoft Teams will load in the tab. You can compose any URL even with query strings.
-function createTabUrl(): string {
-    let tabChoice = document.getElementById("tabChoice");
-    let selectedTab = tabChoice[(tabChoice as HTMLSelectElement).selectedIndex].value;
-
-    return window.location.protocol + "//" + window.location.host + "/" + selectedTab;
-}
-
 // Call the initialize API first
 microsoftTeams.initialize();
 
@@ -39,24 +29,14 @@ microsoftTeams.registerOnThemeChangeHandler(function(theme: string): void {
 // Save configuration changes
 microsoftTeams.settings.registerOnSaveHandler(function(saveEvent: microsoftTeams.settings.SaveEvent): void {
     microsoftTeams.settings.setSettings({
-        contentUrl: createTabUrl(), // Mandatory parameter
-        entityId: createTabUrl(), // Mandatory parameter
+        contentUrl: constants.TaskModuleInfo.contentUrl, // Mandatory parameter
+        entityId: constants.TaskModuleInfo.taskName, // Mandatory parameter
     });
     saveEvent.notifySuccess();
 });
-export function submittask(card: any): void {
-    microsoftTeams.tasks.submitTask(card);
-}
+
 // Logic to let the user configure what they want to see in the tab being loaded
 document.addEventListener("DOMContentLoaded", function(): void {
-    let tabChoice = document.getElementById("tabChoice");
-    if (tabChoice) {
-        tabChoice.onchange = function(): void {
-            let selectedTab = this[(this as HTMLSelectElement).selectedIndex].value;
-            microsoftTeams.settings.setValidityState(selectedTab === "first" || selectedTab === "second" || selectedTab === "taskmodule");
-        };
-    }
-
     // If we are on the Task Module page, initialize the buttons and deep links
     let taskModuleButtons = document.getElementsByClassName("taskModuleButton");
     if (taskModuleButtons.length > 0) {
@@ -66,18 +46,15 @@ document.addEventListener("DOMContentLoaded", function(): void {
             height: null,
             width: null,
             url: null,
-            card: null,
-            fallbackUrl: null,
-            completionBotId: null,
         };
         let deepLink = document.getElementById("dlaudioRecordApps") as HTMLAnchorElement;
-        deepLink.href = taskModuleLink(constants.defaultJson.appId, constants.TaskModuleStrings.AudioRecordTitle, constants.TaskModuleSizes.audiorecord.height, constants.TaskModuleSizes.audiorecord.width, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`, null, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`);
+        deepLink.href = taskModuleLink(appId, constants.TaskModuleStrings.AudioRecordTitle, constants.TaskModuleSizes.audiorecord.height, constants.TaskModuleSizes.audiorecord.width, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`, null, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`);
+        let submitHandler = (err: string, result: any): void => { console.log(`Err: ${err}; Result:`); };
 
         for (let btn of taskModuleButtons) {
             btn.addEventListener("click",
                 function (): void {
                     taskInfo.url = `${appRoot()}/${this.id.toLowerCase()}`;
-                    let submitHandler = (err: string, result: any): void => { console.log(`Err: ${err}; Result:  + ${result}`); };
                     taskInfo.title = constants.TaskModuleStrings.AudioRecordTitle;
                     taskInfo.height = constants.TaskModuleSizes.audiorecord.height;
                     taskInfo.width = constants.TaskModuleSizes.audiorecord.width;

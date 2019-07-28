@@ -1,0 +1,75 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.5",
+    "version": "1.0.0",
+    "id": "id",
+    "packageName": "taskmodule",
+    "developer": {
+        "name": "authorName",
+        "websiteUrl": "websiteUrl",
+        "privacyUrl": "https://www.microsoft.com/privacy",
+        "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Sample Task Module",
+        "full": "Sample Task Module"
+    },
+    "description": {
+        "short": "task module with tabs",
+        "full": "task module with tabs"
+    },
+    "accentColor": "#FFFFFF",
+    "staticTabs": [
+        {
+            "entityId": "taskmodule",
+            "name": "SampleTaskModule",
+            "contentUrl": "contentUrl",
+            "websiteUrl": "websiteUrl",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "botId",
+            "canUpdateConfiguration": true,
+            "commands": [
+                {
+                    "id": "getAudioRecord",
+                    "type": "action",
+                    "title": "Get some audio for fun",
+                    "description": "",
+                    "initialRun": true,
+                    "fetchTask": true,
+                    "context": [
+                        "commandBox",
+                        "compose"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "audioTitle",
+                            "title": "Audio title",
+                            "description": "Audio Record to use"
+                        }
+                    ]
+                }
+            ],
+            "messageHandlers": []
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "domainName"
+    ],
+    "devicePermissions": [
+        "media"
+    ]
+}

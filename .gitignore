@@ -60,7 +60,6 @@ typings/
 # Distributables
 build/
 dist/
-manifest/
 public/scripts/bundle.js
 
 # next.js build output

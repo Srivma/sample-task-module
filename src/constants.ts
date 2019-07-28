@@ -1,28 +1,34 @@
-// Dialog ids
-// tslint:disable-next-line:variable-name
-export const defaultJson = {
-    baseUri: "https://19febf26.ngrok.io",
-    appId: "96f6fe44-166e-4951-b3a3-bb65ada49020",
-    appPassword: "drvIXmVag/y1zY**548WydGguTaPrG:m",
-};
 // Task Module Strings
 // tslint:disable-next-line:variable-name
 export const TaskModuleStrings = {
-    AudioRecordTitle: "Create a new  audio record",
+    AudioRecordTitle: "Record a New Voice Message",
     AudioRecordName: "Audio Record",
+    PlayAudioTitle: "Play Voice Message",
 };
 
 // Task Module Ids
 // tslint:disable-next-line:variable-name
 export const TaskModuleIds = {
     AudioRecord: "audiorecord",
+    PlayAudio: "playaudio",
 };
 
 // Task Module Sizes
 // tslint:disable-next-line:variable-name
 export const TaskModuleSizes = {
     audiorecord: {
-        width: 510,
-        height: 255,
+        width: 450,
+        height: 190,
     },
+    playaudio: {
+        width: 510,
+        height: 90,
+    },
+};
+
+// Task Module Ids
+// tslint:disable-next-line:variable-name
+export const TaskModuleInfo = {
+    contentUrl: "\taskmodule",
+    taskName: "taskmodule",
 };

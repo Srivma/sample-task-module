@@ -1,0 +1,14 @@
+doctype html
+audio(id ="myAudio" controls autoplay)
+script.
+  var audio = document.querySelector("audio");
+  function getUrlParameter(name) {
+  name = name.replace(/[\\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));
+  };
+  audio.src=getUrlParameter('audioFile');
+  var x = document.getElementById("myAudio").autoplay;
+  audio.play();
+  alert(x);

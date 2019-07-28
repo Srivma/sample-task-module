@@ -5,7 +5,7 @@ block content
   div(class='font-semibold font-title') Microsoft Teams Task Modules Audio Demo
   
   p Let's try it out!
-    div(id="buttons" style="text-align: center; margin-left: auto; margin-right: auto")
+    div(class="buttons")
         
       button(class="taskModuleButton button-primary" id="AudioRecord") Audio Record
       div <a id="dlaudioRecordApps" target="_blank")>Deep Link</a>
@@ -19,7 +19,6 @@ block content
     function deepLinkAlert(event) {
       if (event.which === 1) {
         event.stopPropagation();
-        // event.preventDefault();
         alert("The deep link URL is too long to be used from the browser address bar, but on most browsers, it will work from within an anchor tag (<a>) or a button.");
       }
     }

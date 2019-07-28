@@ -1,7 +1,9 @@
 {
     "app": {
-        "baseUri": "https://19febf26.ngrok.io",
+        "baseUri": "https://e88c5c14.ngrok.io",
         "appId": "96f6fe44-166e-4951-b3a3-bb65ada49020",
-        "appPassword": "drvIXmVag/y1zY**548WydGguTaPrG:m"
+        "appPassword": "drvIXmVag/y1zY**548WydGguTaPrG:m",
+        "accountKey" : "fF/tRxH/v6NVub/jrDzmZnVY7JUL6cbtrQlFVmHboaO+11zCggljcLHW9Uq9RLuyNji21eO6DDbnUug1Rd7Mzg=="
+
     }
 }
