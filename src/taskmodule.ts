@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(): void {
         };
         let deepLink = document.getElementById("dlaudioRecordApps") as HTMLAnchorElement;
         deepLink.href = taskModuleLink(appId, constants.TaskModuleStrings.AudioRecordTitle, constants.TaskModuleSizes.audiorecord.height, constants.TaskModuleSizes.audiorecord.width, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`, null, `${appRoot()}/${constants.TaskModuleIds.AudioRecord}`);
-        let submitHandler = (err: string, result: any): void => { console.log(`Err: ${err}; Result:`); };
+        let submitHandler = (err: string, result: any): void => { console.log(`Err: ${err}; Result:  + ${result}`); };
 
         for (let btn of taskModuleButtons) {
             btn.addEventListener("click",

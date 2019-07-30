@@ -27,4 +27,9 @@ module.exports.setup = function(app: any): void {
         // Render the template, passing the appId so it's included in the rendered HTML
         res.render("playaudio", { appId: `${appRoot()}` });
     });
+
+    app.get("/audiorecorddetail", function(req: Request, res: Response): void {
+        // Render the template, passing the appId so it's included in the rendered HTML
+        res.render("audiorecorddetail", { appId: `${appRoot()}` });
+    });
 };

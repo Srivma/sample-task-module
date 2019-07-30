@@ -1,6 +1,6 @@
 (function(window){
 
-    var WORKER_PATH = 'recorderWorker.js';
+    var WORKER_PATH = '/scripts/recorderWorker.js';
     var recorder = function(source, configure){
       var config = configure || {};
       var bufferLen = config.bufferLen || 4096;
@@ -56,7 +56,7 @@
       // we called exportWAV function in stoprecording button click to get the blob data
       this.exportWAV = function(cb, type){
         currCallback = cb || config.callback;
-        type = type || config.type || 'application/octet-stream';
+        type = type || config.type || 'audio/wav';
         if (!currCallback) throw new Error('Callback not set');
 
         worker.postMessage({

@@ -45,18 +45,20 @@ blobService.createContainerIfNotExists("taskcontainer", {
 app.use(function(req, res, next) {
   let data: any;
   let bufData : Buffer;
-  let i = 0;
   let arr = [];
+
   req.on("data", function(chunk) {
     data = Buffer.from(chunk);
     arr.push(data);
     bufData = Buffer.concat(arr);
   });
+
   req.on("end", function() {
     let bufToStream = bufferToStream(bufData);
     req.body = bufToStream;
     next();
   });
+
 });
 
 app.use(bodyParser.raw({ type: "audio/wav", limit: "50mb" }));
@@ -66,7 +68,6 @@ function bufferToStream(buffer: any) {
   let streamData = new Duplex();
   streamData.push(buffer);
   streamData.push(null);
-  // streamData.pipe(process.stdout);
   return streamData;
 }
 
@@ -108,7 +109,7 @@ async function composeInvoke(event: builder.IEvent, cb: (err: Error, body: any, 
   if ( event["name"] === "composeExtension/submitAction" ) {
   let invokeValue = event["value"].data;
   let actionUrl = invokeValue.url;
-  fetchTemplates["audiofile"].task["value"].url = "https://e88c5c14.ngrok.io/playaudio?audioFile=" + actionUrl;
+  fetchTemplates["audiofile"].task["value"].url = config.get("app.baseUri") + "/playaudio?audioFile=" + actionUrl;
   attachments.push(new builder.HeroCard()
   .title("Audio Card")
   .text("This card can play an audio file.")
@@ -118,7 +119,6 @@ async function composeInvoke(event: builder.IEvent, cb: (err: Error, body: any, 
   cb(null, response, 200);
   }
   if ( event["name"] === "task/fetch" ) {
-    // fetchTemplates["audiofile"].task["value"].url = "/playaudio?audiourl=" + actionUrl
     cb(null, fetchTemplates["audiofile"], 200);
   }
 }

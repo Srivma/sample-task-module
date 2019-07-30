@@ -1,5 +1,5 @@
 doctype html
-audio(id ="myAudio" controls autoplay)
+audio(controls="true" autoplay="true")
 script.
   var audio = document.querySelector("audio");
   function getUrlParameter(name) {
@@ -8,7 +8,6 @@ script.
   var results = regex.exec(location.search);
   return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));
   };
+  
   audio.src=getUrlParameter('audioFile');
-  var x = document.getElementById("myAudio").autoplay;
   audio.play();
-  alert(x);
