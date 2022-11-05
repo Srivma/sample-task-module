@@ -45,7 +45,7 @@
     "@types/winston": "^2.4.4",
     "browserify": "^16.2.3",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-develop-server": "^0.5.2",
     "gulp-json-transform": "^0.4.5",
     "gulp-mocha": "^5.0.0",
