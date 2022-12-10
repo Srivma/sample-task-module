@@ -24,7 +24,7 @@
     "botbuilder": "^3.16.0",
     "botbuilder-teams": "^0.1.7",
     "config": "^1.31.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "natives": "^1.1.6",
     "path": "^0.12.7",
